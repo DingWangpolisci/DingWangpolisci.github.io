@@ -3,32 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teaching | Your Name</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Teaching | Ding Wang</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <header>
-        <h1>Your Name</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="teaching.html">Teaching</a></li>
-                <li><a href="cv.html">CV</a></li>
-                <li><a href="grants-services.html">Grants/Services</a></li>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Ding Wang</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="research.html">Research</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="teaching.html">Teaching</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cv.html">CV</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="grants-services.html">Grants/Services</a>
+                </li>
             </ul>
-        </nav>
-    </header>
-    <section>
-        <h2>Teaching</h2>
-        <p>My teaching experience includes the following courses:</p>
-        <ul>
-            <li><strong>Course 1:</strong> Description of course</li>
-            <li><strong>Course 2:</strong> Description of course</li>
-        </ul>
-    </section>
-    <footer>
-        <p>© 2024 Your Name</p>
+        </div>
+    </nav>
+
+    <!-- Teaching Section -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Teaching</h2>
+                <p>My teaching experience includes the following courses:</p>
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Course 1:</strong> Description of the course</li>
+                    <li class="list-group-item"><strong>Course 2:</strong> Description of the course</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center p-3 mt-5">
+        © 2024 Ding Wang
     </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
