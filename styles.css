@@ -1,21 +1,26 @@
 :root {
-  --bg: #F5F6F4;
-  --section-bg: #FFFFFF;
-  --alt-section-bg: #F0F3F2;
+  /* Background layers */
+  --bg-main: #EEF3F6;          /* cool light blue-gray */
+  --bg-section: #FFFFFF;       /* white cards */
+  --bg-alt: #E6EEF3;           /* slightly tinted section */
 
-  --text: #111827;
-  --muted: #5F6C7B;
+  /* Text */
+  --text: #1A2A36;             /* deep cool charcoal */
+  --muted: #5F7283;
 
-  --border: rgba(17, 24, 39, 0.08);
-  --accent: #2C5D87;
+  /* Accent */
+  --accent: #2F5D87;           /* muted nordic blue */
+  --accent-soft: rgba(47, 93, 135, 0.12);
 
-  --shadow: 0 18px 45px rgba(17, 24, 39, 0.06);
+  /* Structure */
+  --border: rgba(26, 42, 54, 0.08);
   --radius: 16px;
+  --shadow: 0 20px 45px rgba(26, 42, 54, 0.07);
 }
 
 /* Base */
 body {
-  background: var(--bg);
+  background: linear-gradient(180deg, #F4F8FB 0%, var(--bg-main) 100%);
   color: var(--text);
   font-family: Inter, system-ui, -apple-system, sans-serif;
   font-size: 17.5px;
@@ -29,8 +34,9 @@ body {
 
 /* Navbar */
 .nordic-nav {
-  background: rgba(245, 246, 244, 0.9);
+  background: rgba(238, 243, 246, 0.95);
   border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(6px);
 }
 
 .nordic-brand {
@@ -45,8 +51,8 @@ body {
 }
 
 .nordic-navlinks .nav-link:hover {
-  opacity: 1;
   color: var(--accent);
+  opacity: 1;
 }
 
 .nordic-navlinks .nav-link.active {
@@ -55,14 +61,15 @@ body {
 
 /* HERO */
 .nordic-hero {
-  background: var(--section-bg);
+  background: var(--bg-section);
   border-radius: var(--radius);
-  padding: 48px 48px 44px 48px;
+  padding: 52px;
   box-shadow: var(--shadow);
+  border: 1px solid var(--border);
 }
 
 .nordic-h1 {
-  font-size: 40px;
+  font-size: 42px;
   font-weight: 900;
   letter-spacing: -0.03em;
   margin-bottom: 14px;
@@ -74,19 +81,37 @@ body {
   max-width: 760px;
 }
 
-/* Section Cards */
+/* Chips */
+.nordic-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.chip {
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Section cards */
 .nordic-card {
-  background: var(--section-bg);
+  background: var(--bg-section);
   border-radius: var(--radius);
   padding: 36px;
   box-shadow: var(--shadow);
+  border: 1px solid var(--border);
 }
 
 .nordic-card.alt {
-  background: var(--alt-section-bg);
+  background: var(--bg-alt);
 }
 
-/* Section Headings */
+/* Section headings */
 .nordic-h2 {
   font-size: 22px;
   font-weight: 800;
@@ -98,37 +123,20 @@ body {
 .nordic-h2::after {
   content: "";
   display: block;
-  width: 36px;
+  width: 42px;
   height: 3px;
   background: var(--accent);
-  margin-top: 10px;
+  margin-top: 12px;
   border-radius: 3px;
 }
 
 /* Text */
 .nordic-text {
-  color: var(--text);
   margin-bottom: 16px;
 }
 
 .nordic-muted {
   color: var(--muted);
-}
-
-/* Chips */
-.nordic-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 16px;
-}
-
-.chip {
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: #E9EEF3;
-  font-size: 13px;
-  font-weight: 600;
 }
 
 /* Links */
@@ -144,8 +152,8 @@ body {
 
 /* Footer */
 .nordic-footer {
-  margin-top: 60px;
-  padding: 24px 0;
+  margin-top: 70px;
+  padding: 28px 0;
   border-top: 1px solid var(--border);
-  background: var(--section-bg);
+  background: var(--bg-section);
 }
