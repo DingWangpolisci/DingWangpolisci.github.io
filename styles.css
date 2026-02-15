@@ -1,35 +1,199 @@
+/* Nordic / IKEA-inspired theme for a Bootstrap 5 academic site
+   Calm neutrals, soft cards, crisp typography, subtle accents */
+
+:root {
+  --bg: #F7F7F5;            /* warm off-white */
+  --card: #FFFFFF;
+  --panel: #F1F3F2;         /* cool light gray */
+  --text: #1F2933;          /* soft charcoal */
+  --muted: #6B7280;         /* muted gray */
+  --border: #E5E7EB;        /* light border */
+  --accent: #2F5D8A;        /* muted blue */
+  --shadow: 0 10px 25px rgba(16, 24, 40, 0.06);
+  --shadow-hover: 0 14px 30px rgba(16, 24, 40, 0.10);
+  --radius: 16px;
+}
+
+html, body { height: 100%; }
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
-header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
+
+/* Readable line length */
+.nordic-container { max-width: 1040px; }
+
+/* Navbar: light, airy, modern */
+.nordic-nav {
+  background: rgba(247, 247, 245, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
 }
-nav ul {
-    list-style-type: none;
+
+.nordic-brand {
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  color: var(--text);
 }
-nav ul li {
-    display: inline;
-    margin: 0 15px;
+
+.nordic-navlinks .nav-link {
+  color: var(--text);
+  opacity: 0.88;
+  font-weight: 600;
+  padding: 0.55rem 0.85rem;
+  border-radius: 12px;
+  transition: background 140ms ease, opacity 140ms ease, color 140ms ease;
 }
-nav ul li a {
-    color: white;
-    text-decoration: none;
+
+.nordic-navlinks .nav-link:hover {
+  background: rgba(47, 93, 138, 0.08);
+  opacity: 1;
 }
-section {
-    padding: 20px;
+
+.nordic-navlinks .nav-link.active {
+  color: var(--accent);
+  background: rgba(47, 93, 138, 0.10);
+  opacity: 1;
 }
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+
+/* Cards */
+.nordic-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 140ms ease, box-shadow 140ms ease;
+}
+
+.nordic-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.nordic-card-body { padding: 26px; }
+
+.nordic-accent-bar {
+  height: 4px;
+  background: var(--accent);
+  opacity: 0.9;
+}
+
+/* Hero */
+.nordic-hero .nordic-card-body { padding: 30px; }
+
+.nordic-h1 {
+  font-size: 34px;
+  line-height: 1.15;
+  font-weight: 850;
+  letter-spacing: -0.3px;
+}
+
+.nordic-lead {
+  font-size: 18px;
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.nordic-h2 {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.1px;
+  margin-bottom: 12px;
+}
+
+.nordic-text {
+  color: rgba(31, 41, 51, 0.92);
+  margin-bottom: 14px;
+}
+
+.nordic-muted { color: var(--muted); }
+
+.nordic-divider {
+  margin: 0 8px;
+  color: rgba(107, 114, 128, 0.7);
+}
+
+/* Chips */
+.nordic-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(241, 243, 242, 0.92);
+  border: 1px solid rgba(229, 231, 235, 0.92);
+  color: rgba(31, 41, 51, 0.92);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Links */
+.nordic-link {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(47, 93, 138, 0.18);
+}
+
+.nordic-link:hover {
+  border-bottom-color: rgba(47, 93, 138, 0.45);
+}
+
+/* Lists */
+.nordic-list { padding-left: 18px; margin-bottom: 0; }
+.nordic-list li { margin-bottom: 10px; }
+.nordic-bullet-title { font-weight: 800; }
+
+/* Buttons */
+.nordic-btn {
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-weight: 800;
+}
+
+.nordic-btn:hover { opacity: 0.92; color: #fff; }
+
+.nordic-btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid rgba(47, 93, 138, 0.35);
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-weight: 800;
+}
+
+.nordic-btn-outline:hover {
+  background: rgba(47, 93, 138, 0.08);
+  color: var(--accent);
+}
+
+/* Footer */
+.nordic-footer {
+  border-top: 1px solid var(--border);
+  background: rgba(241, 243, 242, 0.55);
+}
+
+.nordic-footer-note { padding: 4px 2px 0 2px; }
+
+/* Small screen tweaks */
+@media (max-width: 575px) {
+  body { font-size: 16.5px; }
+  .nordic-h1 { font-size: 28px; }
+  .nordic-card-body { padding: 22px; }
+  .nordic-hero .nordic-card-body { padding: 24px; }
 }
