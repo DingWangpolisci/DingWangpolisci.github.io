@@ -1,32 +1,31 @@
 :root{
-  /* Cool nordic palette */
-  --bg0: #EAF2F8;          /* light blue background */
-  --bg1: #E7F0F7;          /* slightly deeper */
-  --card: #FFFFFF;         /* white */
-  --cardTint: #F5FAFF;     /* very light blue-tinted card */
-  --cardTint2: #F2FBFA;    /* very light teal-tinted card */
+  /* Palette */
+  --bgTop: #E8F2FB;
+  --bgMid: #E7F0F7;
+  --bgBot: #EAF6F5;
 
-  --text: #142433;         /* deep blue-charcoal */
-  --muted: #546A7B;
+  --text: #102433;               /* deep blue-charcoal */
+  --muted: #5A6F82;
 
-  --accent: #2F5D87;       /* nordic blue */
-  --accent2: #2B6B67;      /* nordic teal */
-  --accentSoft: rgba(47,93,135,.14);
-  --accentSoft2: rgba(43,107,103,.12);
+  --accent: #2F5D87;             /* nordic blue */
+  --accent2: #2B6B67;            /* nordic teal */
+  --accent3: #4B7DB6;            /* lighter tech blue */
 
-  --border: rgba(20,36,51,.10);
-  --shadow: 0 18px 40px rgba(20,36,51,.08);
-  --shadowHover: 0 22px 55px rgba(20,36,51,.12);
+  --border: rgba(16, 36, 51, 0.12);
+  --borderSoft: rgba(47, 93, 135, 0.18);
+
+  --card: rgba(255,255,255,0.82);
+  --card2: rgba(245, 250, 255, 0.82);
+  --card3: rgba(242, 251, 250, 0.82);
+
+  --shadow: 0 18px 50px rgba(16, 36, 51, 0.10);
+  --shadowHover: 0 26px 70px rgba(16, 36, 51, 0.15);
 
   --radius: 18px;
 }
 
-/* Page background: make the color show up */
+/* ===== Tech-deck background art (patterns + aurora blobs) ===== */
 body{
-  background:
-    radial-gradient(900px 500px at 12% -10%, rgba(47,93,135,.22), rgba(234,242,248,0) 62%),
-    radial-gradient(800px 460px at 88% 0%, rgba(43,107,103,.18), rgba(234,242,248,0) 62%),
-    linear-gradient(180deg, #F3F8FC 0%, var(--bg0) 55%, var(--bg1) 100%);
   color: var(--text);
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   font-size: 17.5px;
@@ -34,187 +33,233 @@ body{
   letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+
+  /* Aurora + gradient base */
+  background:
+    radial-gradient(900px 520px at 10% -10%, rgba(47,93,135,.32), rgba(232,242,251,0) 62%),
+    radial-gradient(780px 480px at 92% -12%, rgba(43,107,103,.28), rgba(232,242,251,0) 62%),
+    radial-gradient(900px 700px at 85% 110%, rgba(75,125,182,.18), rgba(232,242,251,0) 60%),
+    linear-gradient(180deg, var(--bgTop) 0%, var(--bgMid) 55%, var(--bgBot) 100%);
 }
 
-/* Slightly narrower for “designed” feel */
+/* Subtle grid + dot pattern overlay using inline SVG as background-image */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  /* 1) faint grid */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M80 0H0V80' fill='none' stroke='%23102433' stroke-opacity='0.06' stroke-width='1'/%3E%3C/svg%3E"),
+    /* 2) faint dots */
+    url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='2' cy='2' r='1.1' fill='%232F5D87' fill-opacity='0.10'/%3E%3C/svg%3E\");
+  background-size: 80px 80px, 44px 44px;
+  background-position: 0 0, 10px 18px;
+  opacity: 0.9;
+  mix-blend-mode: multiply;
+}
+
+/* A tiny noise texture to avoid “flat” monochrome (very subtle) */
+body::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+}
+
+/* Make sure content sits above background overlays */
+main, nav, footer { position: relative; z-index: 1; }
+
 .nordic-container{ max-width: 1040px; }
 
-/* Navbar: make it blend with background (and feel modern) */
+/* ===== Navbar ===== */
 .nordic-nav{
-  background: rgba(234,242,248,.82);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
+  background: rgba(232, 242, 251, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(16,36,51,0.12);
 }
 
 .nordic-brand{
-  font-weight: 850;
+  font-weight: 900;
   letter-spacing: -0.02em;
   color: var(--text);
 }
 
-/* links in nav */
 .nordic-navlinks .nav-link{
-  font-weight: 650;
+  font-weight: 700;
   color: var(--text);
   opacity: .86;
   padding: .55rem .85rem;
   border-radius: 999px;
-  transition: background 160ms ease, opacity 160ms ease, transform 160ms ease, color 160ms ease;
+  transition: background 170ms ease, opacity 170ms ease, transform 170ms ease, color 170ms ease;
 }
 
 .nordic-navlinks .nav-link:hover{
-  background: rgba(47,93,135,.10);
+  background: rgba(47,93,135,.12);
   color: var(--accent);
   opacity: 1;
   transform: translateY(-1px);
 }
 
 .nordic-navlinks .nav-link.active{
-  background: rgba(47,93,135,.14);
+  background: rgba(47,93,135,.18);
   color: var(--accent);
   opacity: 1;
 }
 
-/* HERO: tinted surface + subtle border gives immediate “color” */
-.nordic-hero{
-  background: linear-gradient(180deg, var(--cardTint) 0%, rgba(255,255,255,.92) 100%);
-  border: 1px solid rgba(47,93,135,.18);
-  border-radius: var(--radius);
-}
-
-/* Card base */
+/* ===== Cards: glassy + tech border ===== */
 .nordic-card{
-  background: var(--card);
-  border: 1px solid var(--border);
   border-radius: var(--radius);
+  border: 1px solid var(--borderSoft);
   box-shadow: var(--shadow);
   overflow: hidden;
-  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease, background 160ms ease;
+  background: var(--card);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 
-/* Make the “card” feeling obvious */
 .nordic-card:hover{
   transform: translateY(-3px);
   box-shadow: var(--shadowHover);
-  border-color: rgba(47,93,135,.18);
+  border-color: rgba(47,93,135,.28);
 }
 
-/* Card body spacing */
 .nordic-card-body{ padding: 34px; }
 
-/* Accent bar: give it more presence */
+/* Stronger accent bar: looks like a deck header */
 .nordic-accent-bar{
-  height: 6px;
-  background: linear-gradient(90deg, var(--accent), rgba(43,107,103,.70));
+  height: 7px;
+  background: linear-gradient(90deg, var(--accent) 0%, rgba(75,125,182,.95) 50%, rgba(43,107,103,.90) 100%);
 }
 
-/* Optional alt cards (tinted) */
-.nordic-card.alt-blue{
-  background: linear-gradient(180deg, rgba(245,250,255,.95) 0%, rgba(255,255,255,.95) 100%);
-  border-color: rgba(47,93,135,.16);
+/* Tinted variants */
+.nordic-hero{
+  background: linear-gradient(180deg, rgba(245,250,255,.92) 0%, rgba(255,255,255,.80) 100%);
 }
 
-.nordic-card.alt-teal{
-  background: linear-gradient(180deg, rgba(242,251,250,.95) 0%, rgba(255,255,255,.95) 100%);
-  border-color: rgba(43,107,103,.16);
+.alt-blue{
+  background: linear-gradient(180deg, rgba(245,250,255,.92) 0%, rgba(255,255,255,.78) 100%);
 }
 
-/* Typographic hierarchy */
+.alt-teal{
+  background: linear-gradient(180deg, rgba(242,251,250,.92) 0%, rgba(255,255,255,.78) 100%);
+}
+
+/* ===== Typography ===== */
 .nordic-h1{
-  font-size: clamp(32px, 3.1vw, 44px);
-  line-height: 1.12;
-  font-weight: 900;
-  letter-spacing: -0.04em;
+  font-size: clamp(34px, 3.2vw, 46px);
+  line-height: 1.10;
+  font-weight: 950;
+  letter-spacing: -0.045em;
   margin-bottom: 12px;
 }
 
 .nordic-lead{
-  font-size: 18.75px;
+  font-size: 19px;
   color: var(--muted);
-  max-width: 72ch;
+  max-width: 74ch;
 }
 
 .nordic-h2{
   font-size: 22px;
-  font-weight: 850;
+  font-weight: 900;
   letter-spacing: -0.02em;
   margin-bottom: 14px;
 }
 
-/* Add a soft highlight behind headings (subtle color, big impact) */
-.nordic-h2 .hl{
-  background: linear-gradient(transparent 60%, rgba(47,93,135,.18) 0);
-  padding: 0 .15em;
-  border-radius: 8px;
+/* “Tech deck” header underline with glow */
+.nordic-h2::after{
+  content:"";
+  display:block;
+  width: 56px;
+  height: 3px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(47,93,135,.95), rgba(43,107,103,.75));
+  box-shadow: 0 6px 18px rgba(47,93,135,.22);
 }
 
-.nordic-text{ color: rgba(20,36,51,.92); margin-bottom: 16px; }
+.nordic-text{ color: rgba(16,36,51,.92); margin-bottom: 16px; }
 .nordic-muted{ color: var(--muted); }
 
-/* Chips: make them visibly colorful */
-.nordic-chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px; }
+/* ===== Chips: more designed ===== */
+.nordic-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
 
 .chip{
   padding: 8px 12px;
   border-radius: 999px;
-  background: rgba(47,93,135,.12);
-  border: 1px solid rgba(47,93,135,.16);
-  color: rgba(20,36,51,.92);
+  background: rgba(47,93,135,.14);
+  border: 1px solid rgba(47,93,135,.20);
+  color: rgba(16,36,51,.92);
   font-size: 13px;
-  font-weight: 750;
+  font-weight: 800;
 }
 
 .chip:nth-child(3n){
-  background: rgba(43,107,103,.11);
-  border-color: rgba(43,107,103,.16);
+  background: rgba(43,107,103,.12);
+  border-color: rgba(43,107,103,.20);
 }
 
-/* Links: slightly more designed */
+/* ===== Links / buttons ===== */
 .nordic-link{
   color: var(--accent);
-  font-weight: 750;
+  font-weight: 800;
   text-decoration: none;
-  border-bottom: 1px solid rgba(47,93,135,.30);
+  border-bottom: 1px solid rgba(47,93,135,.35);
 }
 
 .nordic-link:hover{
-  border-bottom-color: rgba(47,93,135,.55);
+  border-bottom-color: rgba(47,93,135,.65);
 }
 
-/* Buttons: calmer, slightly colored */
 .nordic-btn{
   background: linear-gradient(180deg, rgba(47,93,135,.98), rgba(47,93,135,.90));
   color:#fff;
   border: 1px solid rgba(47,93,135,.55);
   border-radius: 14px;
   padding: 9px 13px;
-  font-weight: 850;
-  box-shadow: 0 12px 26px rgba(47,93,135,.18);
+  font-weight: 900;
+  box-shadow: 0 14px 30px rgba(47,93,135,.20);
 }
 
 .nordic-btn-outline{
-  background: rgba(255,255,255,.70);
+  background: rgba(255,255,255,.65);
   color: var(--accent);
-  border: 1px solid rgba(47,93,135,.28);
+  border: 1px solid rgba(47,93,135,.30);
   border-radius: 14px;
   padding: 9px 13px;
-  font-weight: 850;
+  font-weight: 900;
 }
 
 .nordic-btn-outline:hover{
-  background: rgba(47,93,135,.10);
+  background: rgba(47,93,135,.12);
 }
 
-/* Footer: slightly tinted so it doesn’t feel black/white */
+/* Lists */
+.nordic-list{ padding-left: 18px; margin-bottom: 0; }
+.nordic-list li{ margin-bottom: 12px; }
+
+/* Footer */
 .nordic-footer{
-  border-top: 1px solid rgba(20,36,51,.10);
+  border-top: 1px solid rgba(16,36,51,.14);
   background: rgba(245,250,255,.70);
 }
 
-/* Nice focus */
+/* Focus */
 :focus-visible{
-  outline: 3px solid rgba(47,93,135,.28);
+  outline: 3px solid rgba(47,93,135,.30);
   outline-offset: 3px;
   border-radius: 10px;
 }
