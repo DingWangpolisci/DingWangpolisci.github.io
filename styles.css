@@ -1,52 +1,74 @@
+/* ===============================
+   Base & Typography
+=============================== */
+
 :root{
-  /* Palette */
-  --bgTop: #E8F2FB;
-  --bgMid: #E7F0F7;
-  --bgBot: #EAF6F5;
+  --bg:#f8fbff;                 /* slightly brighter, less icy */
+  --ink:#102433;
+  --muted:#516572;              /* richer muted tone */
+  --card:#ffffff;
+  --border:#e3edf4;             /* softer border */
+  --accent:#2f5d87;
+  --accent-2:#2b6b67;
+  --accent-3:#4b7db6;
 
-  --text: #102433;               /* deep blue-charcoal */
-  --muted: #5A6F82;
-
-  --accent: #2F5D87;             /* nordic blue */
-  --accent2: #2B6B67;            /* nordic teal */
-  --accent3: #4B7DB6;            /* lighter tech blue */
-
-  --border: rgba(16, 36, 51, 0.12);
-  --borderSoft: rgba(47, 93, 135, 0.18);
-
-  --card: rgba(255,255,255,0.82);
-  --card2: rgba(245, 250, 255, 0.82);
-  --card3: rgba(242, 251, 250, 0.82);
-
-  --shadow: 0 18px 50px rgba(16, 36, 51, 0.10);
-  --shadowHover: 0 26px 70px rgba(16, 36, 51, 0.15);
-
-  --radius: 18px;
+  /* subtle warm accent for personality */
+  --accent-warm:#b45309;
 }
 
-/* ===== Tech-deck background art (patterns + aurora blobs) ===== */
+html,body{height:100%}
+
 body{
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 
+  /* Artistic, controlled wallpaper (no images, no loud patterns) */
   background:
-    /* subtle top-left aurora */
-    radial-gradient(1400px 900px at 15% -10%, rgba(75,125,182,.14), transparent 65%),
+    /* (1) gentle vignette to frame content */
+    radial-gradient(1200px 900px at 50% 40%, rgba(255,255,255,0.00) 0%, rgba(248,251,255,0.00) 55%, rgba(16,36,51,0.035) 100%),
 
-    /* soft top-right glow */
-    radial-gradient(1100px 700px at 95% 5%, rgba(43,107,103,.12), transparent 65%),
-
-    /* large bottom atmospheric wash */
-    radial-gradient(1600px 900px at 50% 120%, rgba(47,93,135,.06), transparent 70%),
-
-    /* gentle vertical illumination */
+    /* (2) gallery “skylight” wash (adds quiet depth) */
     linear-gradient(
       180deg,
-      rgba(255,255,255,.65) 0%,
-      rgba(255,255,255,.85) 40%,
-      rgba(255,255,255,.95) 100%
+      rgba(255,255,255,0.55) 0%,
+      rgba(255,255,255,0.28) 28%,
+      rgba(255,255,255,0.08) 62%,
+      rgba(255,255,255,0.00) 100%
     ),
 
+    /* (3) paper/linen crosshatch (extremely subtle, controlled decoration) */
+    linear-gradient(rgba(16,36,51,0.020) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16,36,51,0.018) 1px, transparent 1px),
+
+    /* (4) your original aurora glow, slightly tuned */
+    radial-gradient(1300px 850px at 18% -12%, rgba(75,125,182,.13), transparent 62%),
+    radial-gradient(950px 700px at 102% 8%, rgba(43,107,103,.12), transparent 62%),
+
+    /* (5) warm atmospheric wash at bottom (human warmth, still subtle) */
+    radial-gradient(1100px 750px at 35% 120%, rgba(180,83,9,.06), transparent 68%),
+
+    /* base */
     var(--bg);
+
+  /* control the “pattern” scale so it reads like texture, not a grid */
+  background-size:
+    100% 100%,
+    100% 100%,
+    140px 140px,
+    140px 140px,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    auto;
+
+  background-position:
+    center,
+    center,
+    center,
+    center,
+    center,
+    center,
+    center,
+    center;
 
   color:var(--ink);
   -webkit-font-smoothing:antialiased;
@@ -54,272 +76,221 @@ body{
   line-height:1.7;
 }
 
+/* ===============================
+   Containers
+=============================== */
 
-/* Subtle grid + dot pattern overlay using inline SVG as background-image */
-body::before{
-  content:"";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-
-  /* 1) faint grid */
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M80 0H0V80' fill='none' stroke='%23102433' stroke-opacity='0.06' stroke-width='1'/%3E%3C/svg%3E"),
-    /* 2) faint dots */
-    url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='2' cy='2' r='1.1' fill='%232F5D87' fill-opacity='0.10'/%3E%3C/svg%3E\");
-  background-size: 80px 80px, 44px 44px;
-  background-position: 0 0, 10px 18px;
-  opacity: 0.9;
-  mix-blend-mode: multiply;
+.nordic-container{
+  max-width: 1120px;
 }
 
-/* A tiny noise texture to avoid “flat” monochrome (very subtle) */
-body::after{
-  content:"";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
-}
+/* ===============================
+   Navbar
+=============================== */
 
-/* Make sure content sits above background overlays */
-main, nav, footer { position: relative; z-index: 1; }
-
-.nordic-container{ max-width: 1040px; }
-
-/* ===== Navbar ===== */
 .nordic-nav{
-  background: rgba(232, 242, 251, 0.78);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(16,36,51,0.12);
+  background: rgba(255,255,255,.76);
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--border);
 }
 
 .nordic-brand{
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  color: var(--text);
+  font-weight:800;
+  letter-spacing:.2px;
+  color:var(--ink);
 }
 
 .nordic-navlinks .nav-link{
-  font-weight: 700;
-  color: var(--text);
-  opacity: .86;
-  padding: .55rem .85rem;
-  border-radius: 999px;
-  transition: background 170ms ease, opacity 170ms ease, transform 170ms ease, color 170ms ease;
+  color:var(--muted);
+  font-weight:600;
 }
 
+.nordic-navlinks .nav-link.active,
 .nordic-navlinks .nav-link:hover{
-  background: rgba(47,93,135,.12);
-  color: var(--accent);
-  opacity: 1;
-  transform: translateY(-1px);
+  color:var(--ink);
 }
 
-.nordic-navlinks .nav-link.active{
-  background: rgba(47,93,135,.18);
-  color: var(--accent);
-  opacity: 1;
-}
+/* ===============================
+   Cards
+=============================== */
 
-/* ===== Cards: glassy + tech border ===== */
 .nordic-card{
-  border-radius: var(--radius);
-  border: 1px solid var(--borderSoft);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  background: var(--card);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  position:relative;
+  background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.88));
+  border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow: 0 20px 50px rgba(16,36,51,.06);
+  overflow:hidden;
 }
 
-.nordic-card:hover{
-  transform: translateY(-3px);
-  box-shadow: var(--shadowHover);
-  border-color: rgba(47,93,135,.28);
+.nordic-card-body{
+  padding:32px 36px;
 }
 
-.nordic-card-body{ padding: 34px; }
-
-/* Stronger accent bar: looks like a deck header */
 .nordic-accent-bar{
-  height: 7px;
-  background: linear-gradient(90deg, var(--accent) 0%, rgba(75,125,182,.95) 50%, rgba(43,107,103,.90) 100%);
+  height:4px;
+  background:linear-gradient(90deg, var(--accent), var(--accent-2));
 }
 
-/* Tinted variants */
-.nordic-hero{
-  background: linear-gradient(180deg, rgba(245,250,255,.92) 0%, rgba(255,255,255,.80) 100%);
-}
-
+/* variants */
 .alt-blue{
-  background: linear-gradient(180deg, rgba(245,250,255,.92) 0%, rgba(255,255,255,.78) 100%);
+  background:linear-gradient(180deg, rgba(245,250,255,.96), rgba(255,255,255,.92));
 }
-
 .alt-teal{
-  background: linear-gradient(180deg, rgba(242,251,250,.92) 0%, rgba(255,255,255,.78) 100%);
+  background:linear-gradient(180deg, rgba(242,251,250,.96), rgba(255,255,255,.92));
 }
 
-/* ===== Typography ===== */
+/* Optional: a warmer “paper” card if you want to use it for the personal section */
+.alt-paper{
+  background:linear-gradient(180deg, rgba(255,252,247,.94), rgba(255,255,255,.92));
+}
+
+/* ===============================
+   Typography
+=============================== */
+
 .nordic-h1{
-  font-size: clamp(34px, 3.2vw, 46px);
-  line-height: 1.10;
-  font-weight: 950;
-  letter-spacing: -0.045em;
-  margin-bottom: 12px;
-}
-
-.nordic-lead{
-  font-size: 19px;
-  color: var(--muted);
-  max-width: 74ch;
+  font-weight:800;               /* softened from 900 */
+  letter-spacing:-.015em;        /* slightly less tight */
+  font-size:clamp(36px, 3.5vw, 56px);
+  line-height:1.05;
 }
 
 .nordic-h2{
-  font-size: 22px;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  margin-bottom: 14px;
+  font-weight:800;
+  letter-spacing:-.01em;
+  font-size:1.6rem;
+  margin-bottom:1rem;
 }
 
-/* “Tech deck” header underline with glow */
-.nordic-h2::after{
-  content:"";
-  display:block;
-  width: 56px;
-  height: 3px;
-  margin-top: 10px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(47,93,135,.95), rgba(43,107,103,.75));
-  box-shadow: 0 6px 18px rgba(47,93,135,.22);
+.nordic-lead{
+  font-size:1.15rem;
+  color:var(--ink);
 }
 
-.nordic-text{ color: rgba(16,36,51,.92); margin-bottom: 16px; }
-.nordic-muted{ color: var(--muted); }
+.nordic-text{
+  color:var(--ink);
+}
 
-/* ===== Chips: more designed ===== */
+.nordic-muted{
+  color:var(--muted);
+}
+
+/* ===============================
+   Chips
+=============================== */
+
 .nordic-chips{
   display:flex;
   flex-wrap:wrap;
-  gap: 10px;
-  margin-top: 14px;
+  gap:8px;
 }
 
 .chip{
-  padding: 8px 12px;
-  border-radius: 999px;
-  background: rgba(47,93,135,.14);
-  border: 1px solid rgba(47,93,135,.20);
-  color: rgba(16,36,51,.92);
-  font-size: 13px;
-  font-weight: 800;
+  font-size:13px;
+  padding:6px 12px;
+  border-radius:999px;
+  background:rgba(47,93,135,.08);
+  border:1px solid rgba(47,93,135,.15);
+  font-weight:600;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
 }
 
-.chip:nth-child(3n){
-  background: rgba(43,107,103,.12);
-  border-color: rgba(43,107,103,.20);
+.chip:hover{
+  transform: translateY(-1px);
+  background: rgba(47,93,135,.10);
+  border-color: rgba(47,93,135,.22);
 }
 
-/* ===== Links / buttons ===== */
-.nordic-link{
-  color: var(--accent);
-  font-weight: 800;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(47,93,135,.35);
-}
-
-.nordic-link:hover{
-  border-bottom-color: rgba(47,93,135,.65);
-}
+/* ===============================
+   Buttons & Links
+=============================== */
 
 .nordic-btn{
-  background: linear-gradient(180deg, rgba(47,93,135,.98), rgba(47,93,135,.90));
+  display:inline-block;
+  padding:10px 18px;
+  border-radius:999px;
+  background:var(--accent);
   color:#fff;
-  border: 1px solid rgba(47,93,135,.55);
-  border-radius: 14px;
-  padding: 9px 13px;
-  font-weight: 900;
-  box-shadow: 0 14px 30px rgba(47,93,135,.20);
+  text-decoration:none;
+  font-weight:600;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.nordic-btn:hover{
+  background:#244c72;
+  transform: translateY(-1px);
 }
 
 .nordic-btn-outline{
-  background: rgba(255,255,255,.65);
-  color: var(--accent);
-  border: 1px solid rgba(47,93,135,.30);
-  border-radius: 14px;
-  padding: 9px 13px;
-  font-weight: 900;
+  display:inline-block;
+  padding:10px 18px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  color:var(--ink);
+  text-decoration:none;
+  font-weight:600;
+  background:rgba(255,255,255,.75);
+  transition: background .2s ease, transform .2s ease;
 }
 
 .nordic-btn-outline:hover{
-  background: rgba(47,93,135,.12);
+  background:rgba(16,36,51,.05);
+  transform: translateY(-1px);
 }
 
-/* Lists */
-.nordic-list{ padding-left: 18px; margin-bottom: 0; }
-.nordic-list li{ margin-bottom: 12px; }
+.nordic-link{
+  color:var(--accent);
+  text-decoration:none;
+  transition: color .2s ease;
+}
 
-/* Footer */
+.nordic-link:hover{
+  color: var(--accent-warm);   /* subtle warm cue */
+  text-decoration:underline;
+}
+
+/* ===============================
+   Lists
+=============================== */
+
+.nordic-list{
+  padding-left:18px;
+}
+
+.nordic-list li{
+  margin-bottom:8px;
+}
+
+/* ===============================
+   Footer
+=============================== */
+
 .nordic-footer{
-  border-top: 1px solid rgba(16,36,51,.14);
-  background: rgba(245,250,255,.70);
+  border-top:1px solid var(--border);
+  background:rgba(255,255,255,.86);
+  backdrop-filter:blur(6px);
 }
 
-/* Focus */
-:focus-visible{
-  outline: 3px solid rgba(47,93,135,.30);
-  outline-offset: 3px;
-  border-radius: 10px;
-}
+/* ===============================
+   Responsive
+=============================== */
 
-/* Mobile */
-@media (max-width: 575px){
-  body{ font-size: 16.75px; }
-  .nordic-card-body{ padding: 24px; }
-}
+@media (max-width:768px){
+  .nordic-card-body{
+    padding:24px;
+  }
 
-.research-item p {
-    font-size: 1.05rem;
-    line-height: 1.6;
-}
-
-.research-item {
-    border-left: 3px solid #dee2e6;
-    padding-left: 15px;
-}
-
-.research-item:hover {
-    border-left-color: #0d6efd;
-    transition: border-color 0.2s ease;
-}
-
-/* ========================================
-   CV Page Enhancements
-   ======================================== */
-
-.cv-embed-wrapper {
-    max-width: 1100px;
-}
-
-/* ========================================
-   Grants/Services Page Enhancements
-   ======================================== */
-
-.gs-card {
-    border-radius: 14px;
-}
-
-.gs-list li {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 0.6rem;
-}
-
-.gs-list li:last-child {
-    margin-bottom: 0;
+  /* Slightly soften the crosshatch on small screens */
+  body{
+    background-size:
+      100% 100%,
+      100% 100%,
+      180px 180px,
+      180px 180px,
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      auto;
+  }
 }
