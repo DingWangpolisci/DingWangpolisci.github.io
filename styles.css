@@ -1,159 +1,226 @@
-:root {
-  /* Background layers */
-  --bg-main: #EEF3F6;          /* cool light blue-gray */
-  --bg-section: #FFFFFF;       /* white cards */
-  --bg-alt: #E6EEF3;           /* slightly tinted section */
+:root{
+  /* Cool nordic palette */
+  --bg0: #EAF2F8;          /* light blue background */
+  --bg1: #E7F0F7;          /* slightly deeper */
+  --card: #FFFFFF;         /* white */
+  --cardTint: #F5FAFF;     /* very light blue-tinted card */
+  --cardTint2: #F2FBFA;    /* very light teal-tinted card */
 
-  /* Text */
-  --text: #1A2A36;             /* deep cool charcoal */
-  --muted: #5F7283;
+  --text: #142433;         /* deep blue-charcoal */
+  --muted: #546A7B;
 
-  /* Accent */
-  --accent: #2F5D87;           /* muted nordic blue */
-  --accent-soft: rgba(47, 93, 135, 0.12);
+  --accent: #2F5D87;       /* nordic blue */
+  --accent2: #2B6B67;      /* nordic teal */
+  --accentSoft: rgba(47,93,135,.14);
+  --accentSoft2: rgba(43,107,103,.12);
 
-  /* Structure */
-  --border: rgba(26, 42, 54, 0.08);
-  --radius: 16px;
-  --shadow: 0 20px 45px rgba(26, 42, 54, 0.07);
+  --border: rgba(20,36,51,.10);
+  --shadow: 0 18px 40px rgba(20,36,51,.08);
+  --shadowHover: 0 22px 55px rgba(20,36,51,.12);
+
+  --radius: 18px;
 }
 
-/* Base */
-body {
-  background: linear-gradient(180deg, #F4F8FB 0%, var(--bg-main) 100%);
+/* Page background: make the color show up */
+body{
+  background:
+    radial-gradient(900px 500px at 12% -10%, rgba(47,93,135,.22), rgba(234,242,248,0) 62%),
+    radial-gradient(800px 460px at 88% 0%, rgba(43,107,103,.18), rgba(234,242,248,0) 62%),
+    linear-gradient(180deg, #F3F8FC 0%, var(--bg0) 55%, var(--bg1) 100%);
   color: var(--text);
-  font-family: Inter, system-ui, -apple-system, sans-serif;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   font-size: 17.5px;
   line-height: 1.7;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* Container */
-.nordic-container {
-  max-width: 1080px;
-}
+/* Slightly narrower for “designed” feel */
+.nordic-container{ max-width: 1040px; }
 
-/* Navbar */
-.nordic-nav {
-  background: rgba(238, 243, 246, 0.95);
+/* Navbar: make it blend with background (and feel modern) */
+.nordic-nav{
+  background: rgba(234,242,248,.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(6px);
 }
 
-.nordic-brand {
-  font-weight: 800;
+.nordic-brand{
+  font-weight: 850;
   letter-spacing: -0.02em;
-}
-
-.nordic-navlinks .nav-link {
-  font-weight: 600;
   color: var(--text);
-  opacity: 0.85;
 }
 
-.nordic-navlinks .nav-link:hover {
+/* links in nav */
+.nordic-navlinks .nav-link{
+  font-weight: 650;
+  color: var(--text);
+  opacity: .86;
+  padding: .55rem .85rem;
+  border-radius: 999px;
+  transition: background 160ms ease, opacity 160ms ease, transform 160ms ease, color 160ms ease;
+}
+
+.nordic-navlinks .nav-link:hover{
+  background: rgba(47,93,135,.10);
+  color: var(--accent);
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.nordic-navlinks .nav-link.active{
+  background: rgba(47,93,135,.14);
   color: var(--accent);
   opacity: 1;
 }
 
-.nordic-navlinks .nav-link.active {
-  color: var(--accent);
-}
-
-/* HERO */
-.nordic-hero {
-  background: var(--bg-section);
+/* HERO: tinted surface + subtle border gives immediate “color” */
+.nordic-hero{
+  background: linear-gradient(180deg, var(--cardTint) 0%, rgba(255,255,255,.92) 100%);
+  border: 1px solid rgba(47,93,135,.18);
   border-radius: var(--radius);
-  padding: 52px;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
 }
 
-.nordic-h1 {
-  font-size: 42px;
+/* Card base */
+.nordic-card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+/* Make the “card” feeling obvious */
+.nordic-card:hover{
+  transform: translateY(-3px);
+  box-shadow: var(--shadowHover);
+  border-color: rgba(47,93,135,.18);
+}
+
+/* Card body spacing */
+.nordic-card-body{ padding: 34px; }
+
+/* Accent bar: give it more presence */
+.nordic-accent-bar{
+  height: 6px;
+  background: linear-gradient(90deg, var(--accent), rgba(43,107,103,.70));
+}
+
+/* Optional alt cards (tinted) */
+.nordic-card.alt-blue{
+  background: linear-gradient(180deg, rgba(245,250,255,.95) 0%, rgba(255,255,255,.95) 100%);
+  border-color: rgba(47,93,135,.16);
+}
+
+.nordic-card.alt-teal{
+  background: linear-gradient(180deg, rgba(242,251,250,.95) 0%, rgba(255,255,255,.95) 100%);
+  border-color: rgba(43,107,103,.16);
+}
+
+/* Typographic hierarchy */
+.nordic-h1{
+  font-size: clamp(32px, 3.1vw, 44px);
+  line-height: 1.12;
   font-weight: 900;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
+  margin-bottom: 12px;
+}
+
+.nordic-lead{
+  font-size: 18.75px;
+  color: var(--muted);
+  max-width: 72ch;
+}
+
+.nordic-h2{
+  font-size: 22px;
+  font-weight: 850;
+  letter-spacing: -0.02em;
   margin-bottom: 14px;
 }
 
-.nordic-lead {
-  font-size: 19px;
-  color: var(--muted);
-  max-width: 760px;
+/* Add a soft highlight behind headings (subtle color, big impact) */
+.nordic-h2 .hl{
+  background: linear-gradient(transparent 60%, rgba(47,93,135,.18) 0);
+  padding: 0 .15em;
+  border-radius: 8px;
 }
 
-/* Chips */
-.nordic-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 16px;
-}
+.nordic-text{ color: rgba(20,36,51,.92); margin-bottom: 16px; }
+.nordic-muted{ color: var(--muted); }
 
-.chip {
-  padding: 7px 13px;
+/* Chips: make them visibly colorful */
+.nordic-chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px; }
+
+.chip{
+  padding: 8px 12px;
   border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent);
+  background: rgba(47,93,135,.12);
+  border: 1px solid rgba(47,93,135,.16);
+  color: rgba(20,36,51,.92);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 750;
 }
 
-/* Section cards */
-.nordic-card {
-  background: var(--bg-section);
-  border-radius: var(--radius);
-  padding: 36px;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
+.chip:nth-child(3n){
+  background: rgba(43,107,103,.11);
+  border-color: rgba(43,107,103,.16);
 }
 
-.nordic-card.alt {
-  background: var(--bg-alt);
-}
-
-/* Section headings */
-.nordic-h2 {
-  font-size: 22px;
-  font-weight: 800;
-  margin-bottom: 18px;
-  letter-spacing: -0.02em;
-  position: relative;
-}
-
-.nordic-h2::after {
-  content: "";
-  display: block;
-  width: 42px;
-  height: 3px;
-  background: var(--accent);
-  margin-top: 12px;
-  border-radius: 3px;
-}
-
-/* Text */
-.nordic-text {
-  margin-bottom: 16px;
-}
-
-.nordic-muted {
-  color: var(--muted);
-}
-
-/* Links */
-.nordic-link {
+/* Links: slightly more designed */
+.nordic-link{
   color: var(--accent);
-  font-weight: 600;
+  font-weight: 750;
   text-decoration: none;
+  border-bottom: 1px solid rgba(47,93,135,.30);
 }
 
-.nordic-link:hover {
-  text-decoration: underline;
+.nordic-link:hover{
+  border-bottom-color: rgba(47,93,135,.55);
 }
 
-/* Footer */
-.nordic-footer {
-  margin-top: 70px;
-  padding: 28px 0;
-  border-top: 1px solid var(--border);
-  background: var(--bg-section);
+/* Buttons: calmer, slightly colored */
+.nordic-btn{
+  background: linear-gradient(180deg, rgba(47,93,135,.98), rgba(47,93,135,.90));
+  color:#fff;
+  border: 1px solid rgba(47,93,135,.55);
+  border-radius: 14px;
+  padding: 9px 13px;
+  font-weight: 850;
+  box-shadow: 0 12px 26px rgba(47,93,135,.18);
+}
+
+.nordic-btn-outline{
+  background: rgba(255,255,255,.70);
+  color: var(--accent);
+  border: 1px solid rgba(47,93,135,.28);
+  border-radius: 14px;
+  padding: 9px 13px;
+  font-weight: 850;
+}
+
+.nordic-btn-outline:hover{
+  background: rgba(47,93,135,.10);
+}
+
+/* Footer: slightly tinted so it doesn’t feel black/white */
+.nordic-footer{
+  border-top: 1px solid rgba(20,36,51,.10);
+  background: rgba(245,250,255,.70);
+}
+
+/* Nice focus */
+:focus-visible{
+  outline: 3px solid rgba(47,93,135,.28);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+/* Mobile */
+@media (max-width: 575px){
+  body{ font-size: 16.75px; }
+  .nordic-card-body{ padding: 24px; }
 }
