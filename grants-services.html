@@ -2,85 +2,106 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grants and Services | Ding Wang</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        /* Custom styles for consistent font size and spacing */
-        #grants-services li {
-            font-size: 1.2em;  /* Increase font size for list items */
-            margin-bottom: 20px;  /* Increase spacing between items */
-        }
-        hr {
-            margin: 2rem 0;  /* Increase space around horizontal rules */
-        }
-    </style>
+    <title>Grants &amp; Service | Ding Wang</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Main site stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Ding Wang</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+<!-- Navbar (Bootstrap 5) -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">Ding Wang</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="research.html">Research</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="teaching.html">Teaching</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cv.html">CV</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="grants-services.html">Grants/Services</a>
-                </li>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="research.html">Research</a></li>
+                <li class="nav-item"><a class="nav-link" href="teaching.html">Teaching</a></li>
+                <li class="nav-item"><a class="nav-link" href="cv.html">CV</a></li>
+                <li class="nav-item"><a class="nav-link active" href="grants-services.html">Grants/Services</a></li>
             </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <!-- Main content specific to Grants and Services page -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 mt-5">
-                <h1>Grants and Services</h1>
-                <hr>
+<!-- Main content -->
+<div class="container py-5">
 
-                <!-- Awards Section -->
-                <section id="grants-services">
-                    <h2>Grants and Fellowships</h2>
-                    <ul>
-                        <li>Gabbert Funds Department Graduate Student Research Award, University of California, Riverside, 2022 ($1,500).</li>
-                        <li>Graduate Research Proposal Award, University of California, Riverside, 2022 ($1,166.67).</li>
-                        <li>Dean’s Distinguished Fellowship, University of California, Riverside, 2016-2020.</li>
-                        <li>Master Student Fellowship, Beijing University of Foreign Studies, 2011-2013.</li>
-                        <li>Distinguished Student Fellowship, Chengdu University of TCM, 2006-2009.</li>
-                    </ul>
-
-                    <h2>Academic Services</h2>
-                    <ul>
-                        <li>Research Manager, UCR Identity and Politics Lab, University of California, Riverside, 2020-2021, 2022-2023.</li>
-                        <li>Conference Discussant: MPSA (2023), WPSA (2024), Toronto-Montreal Political Behavior Workshop (2024).</li>
-                    </ul>
-                </section>
-            </div>
-        </div>
+    <div class="mb-5">
+        <h1 class="display-5 fw-bold">Grants &amp; Service</h1>
+        <p class="text-muted mb-0">
+            Selected research funding, fellowships, and academic service (per CV).
+        </p>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center p-3 mt-5">
-        © 2024 Ding Wang
-    </footer>
+    <!-- Grants & Fellowships -->
+    <section class="mb-4">
+        <div class="card gs-card shadow-sm">
+            <div class="card-body p-4">
+                <h2 class="h4 fw-semibold mb-3">Research Grants &amp; Fellowships</h2>
 
-    <!-- jQuery, Popper.js, and Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                <h3 class="h6 text-uppercase text-muted mb-2">Research Grants</h3>
+                <ul class="gs-list mb-4">
+                    <li><strong>2022:</strong> Gabbert Funds Department Graduate Student Research Award, University of California, Riverside ($1,500).</li>
+                    <li><strong>2022:</strong> Graduate Research Proposal Award, University of California, Riverside ($1,166.67).</li>
+                </ul>
+
+                <h3 class="h6 text-uppercase text-muted mb-2">Scholarships</h3>
+                <ul class="gs-list mb-0">
+                    <li><strong>2016–2020:</strong> Dean’s Distinguished Fellowship, University of California, Riverside.</li>
+                    <li><strong>2011–2013:</strong> Master Student Fellowship, Beijing University of Foreign Studies.</li>
+                    <li><strong>2006–2009:</strong> Distinguished Student Fellowship, Chengdu University of TCM.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Service -->
+    <section class="mb-4">
+        <div class="card gs-card shadow-sm">
+            <div class="card-body p-4">
+                <h2 class="h4 fw-semibold mb-3">Academic Service</h2>
+                <ul class="gs-list mb-0">
+                    <li><strong>Research Manager:</strong> UCR Identity and Politics Lab, University of California, Riverside (2020–2021, 2022–2023).</li>
+                    <li><strong>Conference Discussant:</strong> APSA (2025); MPSA (2023, 2025); WPSA (2024); Toronto–Montreal Political Behavior Workshop (2024).</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methods Training -->
+    <section>
+        <div class="card gs-card shadow-sm">
+            <div class="card-body p-4">
+                <h2 class="h4 fw-semibold mb-3">Methods Training</h2>
+                <ul class="gs-list mb-0">
+                    <li><strong>2016–2019:</strong> ICPSR Summer Program in Quantitative Methods, University of Michigan, Ann Arbor.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    © 2026 Ding Wang
+</footer>
+
+<!-- Bootstrap 5 JS bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
