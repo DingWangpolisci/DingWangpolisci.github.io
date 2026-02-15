@@ -269,3 +269,18 @@ main, nav, footer { position: relative; z-index: 1; }
   body{ font-size: 16.75px; }
   .nordic-card-body{ padding: 24px; }
 }
+
+.research-item p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.research-item {
+    border-left: 3px solid #dee2e6;
+    padding-left: 15px;
+}
+
+.research-item:hover {
+    border-left-color: #0d6efd;
+    transition: border-color 0.2s ease;
+}
